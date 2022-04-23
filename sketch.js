@@ -23,7 +23,7 @@ let img1;
 var arrayImg = [];
 function preload() {
   for(let i =1; i<=9;i+=1){
-    img1 = loadImage('https://vitolaman.github.io/MatterJSbounce/'+i+'.png');
+    img1 = loadImage(''+i+'.png');
     arrayImg.push(img1);
   }
 
@@ -93,7 +93,7 @@ function draw() {
     rotate(angle);
     //ellipse(0, 0, r * 2);
     imageMode(CENTER);
-    image(arrayImg[i], 0, 0, r * 2);
+    image(arrayImg[i], 0, 0, r * 3);
     pop();
   }
 
