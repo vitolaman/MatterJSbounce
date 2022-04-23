@@ -20,9 +20,13 @@ var canvas;
 
 var mouseConstraint;
 let img1;
-
+var arrayImg = [];
 function preload() {
-  img1 = loadImage('https://cdn.jsdelivr.net/gh/liabru/matter-js@2560a681/demo/img/box.png');
+  for(let i =1; i<=9;i+=1){
+    img1 = loadImage('https://vitolaman.github.io/MatterJSbounce/'+i+'.png');
+    arrayImg.push(img1);
+  }
+
 }
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
@@ -57,19 +61,14 @@ function setup() {
   function makeCircle(x, y) {
     var params = {
       restitution: 0.8,
-      friction: 0.2,
-      render: {
-        sprite: {
-            texture: '/asset/2.png'
-        }
-      }
+      friction: 0.2
     }
     return Bodies.circle(x, y, 62, params);
   }
 
   // x, y, columns, rows, column gap, row gap
   //var stack = Composites.stack(20, 50, 15, 10, 20, 20, makeCircle);
-  var stack = Composites.stack(20, height/100, 7, 3, 500, 20, makeCircle);
+  var stack = Composites.stack(20, height/100, 3, 3, 500, 20, makeCircle);
   bodies = stack.bodies;
 
   // add all of the bodies to the world
@@ -77,6 +76,7 @@ function setup() {
 
   // run the engine
   Engine.run(engine);
+  console.log(bodies.length);
 }
 
 function draw() {
@@ -91,9 +91,9 @@ function draw() {
     push();
     translate(pos.x, pos.y);
     rotate(angle);
-    ellipse(0, 0, r * 2);
+    //ellipse(0, 0, r * 2);
     imageMode(CENTER);
-    image(img1, 0, 0, r * 2);
+    image(arrayImg[i], 0, 0, r * 2);
     pop();
   }
 
